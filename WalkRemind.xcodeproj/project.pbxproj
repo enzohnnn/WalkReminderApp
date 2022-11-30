@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F5658A3A29373345004DAE57 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5658A3929373345004DAE57 /* NotificationManager.swift */; };
+		F5658A3C29373E9B004DAE57 /* SettingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5658A3B29373E9B004DAE57 /* SettingPage.swift */; };
 		F58B1F27291B649400C702EF /* WalkRemindApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58B1F26291B649400C702EF /* WalkRemindApp.swift */; };
 		F58B1F29291B649400C702EF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58B1F28291B649400C702EF /* ContentView.swift */; };
 		F58B1F2B291B649A00C702EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F58B1F2A291B649A00C702EF /* Assets.xcassets */; };
@@ -37,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F5658A3929373345004DAE57 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		F5658A3B29373E9B004DAE57 /* SettingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingPage.swift; sourceTree = "<group>"; };
 		F58B1F23291B649400C702EF /* WalkRemind.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WalkRemind.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F58B1F26291B649400C702EF /* WalkRemindApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkRemindApp.swift; sourceTree = "<group>"; };
 		F58B1F28291B649400C702EF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -109,6 +113,8 @@
 				F58B1F57291B8A4400C702EF /* Models */,
 				F58B1F26291B649400C702EF /* WalkRemindApp.swift */,
 				F58B1F28291B649400C702EF /* ContentView.swift */,
+				F5658A3929373345004DAE57 /* NotificationManager.swift */,
+				F5658A3B29373E9B004DAE57 /* SettingPage.swift */,
 				F58B1F50291B651F00C702EF /* HealthStore.swift */,
 				F58B1F2A291B649A00C702EF /* Assets.xcassets */,
 				F58B1F2C291B649A00C702EF /* Preview Content */,
@@ -289,8 +295,10 @@
 			files = (
 				F58B1F29291B649400C702EF /* ContentView.swift in Sources */,
 				F58B1F59291B8A5C00C702EF /* Step.swift in Sources */,
+				F5658A3A29373345004DAE57 /* NotificationManager.swift in Sources */,
 				F58B1F51291B651F00C702EF /* HealthStore.swift in Sources */,
 				F58B1F27291B649400C702EF /* WalkRemindApp.swift in Sources */,
+				F5658A3C29373E9B004DAE57 /* SettingPage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

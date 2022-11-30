@@ -11,10 +11,17 @@ import HealthKit
 struct ContentView: View {
     
     private var healthStore: HealthStore?
+    private var notificationManager: NotificationManager?
     @State private var steps: [Step] = [Step]()
+    @State var selectedTime: Date = Date()
+    @State var stepsGoal: Int = 1000
     
     init() {
         healthStore = HealthStore()
+        notificationManager = NotificationManager()
+        let calendar = Calendar.current
+        let defaultD = DateComponents(calendar: calendar,timeZone: TimeZone.current, hour: 12, minute: 0)
+        selectedTime = calendar.date(from: defaultD)!
     }
     
     private func updateUIFromStatistics( statisticsCollection: HKStatisticsCollection) {
@@ -29,16 +36,28 @@ struct ContentView: View {
             let step = Step(count: Int(count ?? 0), date: statistics.startDate)
             steps.append(step)
         }
+        steps = steps.reversed()
     }
     
     var body: some View {
         NavigationView {
-            List(steps, id: \.id) { step in
-                VStack(alignment: .leading) {
-                    Text("\(step.count)")
-                    Text(step.date, style: .date)
-                        .opacity(0.5)
+            VStack {
+                List(steps, id: \.id) { step in
+                    VStack(alignment: .leading) {
+                        Text("\(step.count)").foregroundColor(step.count >= stepsGoal ? .green : .red)
+                        Text(step.date, style: .date)
+                            .opacity(0.5)
+                    }
                 }
+//                .scaleEffect(x: 1, y: -1, anchor: .center)
+//                .rotationEffect(.radians(.pi))
+                NavigationLink(destination: SettingPage(selectedStart: $selectedTime, stepsGoal: $stepsGoal)) {
+                    Text("Settings")
+                }
+//                Button("Test date button") {
+//                    print(selectedTime)
+//                }
+                // Button("Notification Test Button") {NotificationManager.instance.scheduleNotification()}
             }
             .navigationTitle("Daily Steps Count")
         }
@@ -53,9 +72,15 @@ struct ContentView: View {
                                     updateUIFromStatistics(statisticsCollection: statisticsCollection)
                                 }
                             }
+                        } else {
+                            print("Failed step authorization")
                         }
                     }
                 }
+                if let notificationManager = notificationManager {
+                    notificationManager.requestAuthorization()
+                }
+                UIApplication.shared.applicationIconBadgeNumber = 0
             }
     }
 }
