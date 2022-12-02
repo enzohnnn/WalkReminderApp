@@ -12,6 +12,13 @@ import UserNotifications
 // This is a local notification manager
 class NotificationManager {
     
+    let messages: [String] = ["Hey! Did you reach your step goal for today? Open WalkRemind to find out.",
+                              "Hope your having a wonderful day! Check your WalkRemind app to see if you hit your daily goal",
+                            "How's it going? Forget to exercise today? See if you hit your goal today!",
+                            "One step at a time! Open WalkRemind!",
+                            "A workout today keeps the doctor away. Check your steps for today!",
+                            "Sending lots of love and encouragement. Take a stroll if you haven't today.",
+                            "Isn't the weather beautiful today? Go on a walk if you haven't."]
     static let instance = NotificationManager() // singleton
     
     func requestAuthorization() {
@@ -20,16 +27,21 @@ class NotificationManager {
             if let error = error {
                 print("ERROR: \(error)")
             } else {
-                print("SUCCESS")
+                print("SUCCESS! Authorizing Notifications")
             }
         }
     }
     
     func scheduleNotification(scheduleTime: Date) {
         
+        //userNotificationCenter.removePendingNotificationRequests(withIdentifiers: ["testNotification"])
+        // Clear old notifications before scheduling new one
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+        print("Removing Notification")
+        
         let content = UNMutableNotificationContent()
         content.title = "Check your steps!"
-        content.subtitle = "Hey! Did you reach your step goal for today? Open WalkRemind to find out!"
+        content.subtitle = messages.randomElement() ?? "Check your WalkRemind to see if you hit your goal for today!"
         content.sound = .default
         content.badge = 1
         
@@ -48,5 +60,6 @@ class NotificationManager {
         
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
         UNUserNotificationCenter.current().add(request)
+        print("Scheduled Notification")
     }
 }

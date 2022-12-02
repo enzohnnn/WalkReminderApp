@@ -13,6 +13,7 @@ struct SettingPage: View {
     @State var minutes: Int = 0
     @Binding var selectedStart: Date
     @Binding var stepsGoal: Int
+    @State private var presentAlert = false
     
     var body: some View {
         VStack {
@@ -41,11 +42,13 @@ struct SettingPage: View {
                 .padding(.horizontal)
             Button("Apply") {
                 NotificationManager.instance.scheduleNotification(scheduleTime: selectedStart)
+                presentAlert = true
+            }.alert(isPresented: $presentAlert) {
+                Alert(title: Text("Success!"), message: Text("Alert scheduled."))
             }
         }.padding(.horizontal)
             .onAppear() {
-                print("Test")
-                print(selectedStart)
+                print("Opening Page with selectedStart @: \(selectedStart)")
             }
     }
 }
